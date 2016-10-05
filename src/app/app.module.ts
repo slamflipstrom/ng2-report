@@ -7,7 +7,7 @@ import { ReportModule } from './report/report.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { routing, appRoutingProviders } from './app.routing';
+// import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -19,10 +19,10 @@ import { routing, appRoutingProviders } from './app.routing';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
+    // routing,
     ReportModule
   ],
-  providers: [appRoutingProviders],
+  // providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
