@@ -1,3 +1,34 @@
-<p>
-  report-header works!
-</p>
+<div class="report-header">  
+  <div class="title-bar">
+    <span class="title-left title-text">
+      <strong>Report Title</strong>
+      <div class="title-counter">[counter]</div>
+    </span>
+    <span class="title-right text-muted">
+      <div class="title-export">
+        <a href="">Export to PDF</a>  
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="">Export to CSV</a>  
+      </div>
+    </span>
+  </div>
+
+  <div class="title-summary">
+    <p>Report Summary</p>
+  </div>
+  <form class="title-search">
+    <div class="form-group">
+      <label>Search</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group pull-right">
+      <label>Show</label>
+      <div class="btn-group">
+        <button class="btn">Pagination Dropdown</button>
+        <ul class="dropdown-menu">
+          <!--<li></li>-->
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>

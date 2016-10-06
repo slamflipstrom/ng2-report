@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-report-header',
+  selector: 'report-header',
   templateUrl: './report-header.component.html',
   styleUrls: ['./report-header.component.scss']
 })

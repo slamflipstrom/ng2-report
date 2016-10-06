@@ -1,0 +1,85 @@
+.report-header {
+  display: block;
+  background-color: palegreen;
+  
+  .btn {
+    height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .form-group {
+    display: inline-block;
+  }
+  
+  .form-inline {
+    
+    .form-control {
+      font-size: 14px;
+      padding: 4px, 12px;
+      width: 100%;
+      margin: 0;
+    }
+  }
+  
+  .pull-right {
+    float: right;
+  }
+  
+  .title-bar {
+    padding: 5px 0 8px 0;
+
+    .title-counter {
+      color: red;
+      display: inline;
+      font-size: 12px;
+      padding-left: 15px;
+    }
+
+    .title-export {
+      display: inline;
+      font-size: 12px;
+    }
+  }
+
+  .title-search {
+    padding: 18px 0;
+
+    label {
+      margin-right: 5px;
+    }
+
+    .btn-group {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+  }
+  
+  .title-summary {
+    margin-top: 10px;
+  }
+
+
+  .title-text {
+    font-size: 18px;
+  }
+
+  .title-left {
+    display: inline-block;
+  }
+
+  .title-right {
+    float: right;
+  }
+
+  span.title-right {
+    a {
+      cursor: pointer;
+
+      &.disabled-export {
+        color: darkgray;
+        cursor: default;
+      }
+    }
+  }
+}
