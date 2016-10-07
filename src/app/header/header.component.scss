@@ -1,0 +1,28 @@
+:host {
+  border-bottom: solid;
+  border-color: black;
+  display: block;
+  height: 45px;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+button {
+  height: 100%;
+}
+
+span {
+  display: inline-block;
+  height: 100%;
+  line-height: 100%;
+  position: relative;
+  width: auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
