@@ -1,24 +1,41 @@
 import { Injectable } from '@angular/core';
 
-const DATA: [{}] = [
-  {id: 11, name: 'James'},
-  {id: 12, name: 'Ernest'},
-  {id: 13, name: 'Butch'},
-  {id: 14, name: 'Dorthy'},
-  {id: 15, name: 'Kristin'},
-  {id: 16, name: 'Zeke'},
-  {id: 17, name: 'Felipe'},
-  {id: 18, name: 'Jonas'},
-  {id: 19, name: 'Olivia'},
-  {id: 20, name: 'Tracy'}
-];
+const DATA: { title: string, summary: string, APISvc: string, fields: [{}] } = {
+  title: 'Generic Report',
+  summary: 'This is the Generic Report summary',
+  APISvc: 'API_SVC',
+  fields: [
+    {
+      minWidth: 100,
+      field: 'date',
+      displayName: 'Date',
+      type: 'date',
+      cellFilter: 'cpTimezone'
+    },
+    {
+      minWidth: 50,
+      maxWidth: 200,
+      field: 'assetId',
+      displayName: 'ID',
+      cellClass: 'asset',
+    },
+    {
+      minWidth: 50,
+      maxWidth: 200,
+      field: 'transferSize',
+      displayName: 'Size',
+      type: 'number',
+      cellFilter: 'cpAssetSize',
+      headerCellClass: 'text-right'
+    }
+  ]};
 
 @Injectable()
 export class ReportService {
 
   constructor() { }
 
-  getData(): Object[] {
+  getData(): { title: string, summary: string, APISvc: string, fields: [{}] } {
      return DATA;
   }
 }

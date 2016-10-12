@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'report-header',
@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-header.component.scss']
 })
 export class ReportHeaderComponent implements OnInit {
+  @Input() title: string;
+  @Input() summary: string;
 
-  constructor() { }
 
   ngOnInit() {
   }

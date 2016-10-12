@@ -8,7 +8,7 @@ import { ReportService } from '../services/report.service';
   providers: [ReportService]
 })
 export class ReportComponent implements OnInit {
-  users: Object[];
+  reportData: { title: string, summary: string, APISvc: string, fields: [{}] };
 
   constructor(private reportService: ReportService) { }
 
@@ -17,7 +17,10 @@ export class ReportComponent implements OnInit {
   }
 
   getReportData(): void {
-    this.users = this.reportService.getData();
+    this.reportData = this.reportService.getData();
+    console.log(this.reportData.title);
   }
+
+
 
 }
