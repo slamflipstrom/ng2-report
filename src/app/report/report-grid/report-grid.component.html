@@ -2,9 +2,9 @@
   <tr>
     <th *ngFor="let field of fields;">{{field.displayName}}</th>
   </tr>
-  <tr>
-   <td></td>
-   <td></td>
-   <td></td>
+  <tr *ngFor="let record of records;">
+   <td>{{record.date}}</td>
+   <td>{{record.assetId}}</td>
+   <td>{{record.transferSize}}</td>
   </tr>
 </table>

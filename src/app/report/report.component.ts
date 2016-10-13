@@ -8,7 +8,7 @@ import { ReportService } from '../services/report.service';
   providers: [ReportService]
 })
 export class ReportComponent implements OnInit {
-  reportData: { title: string, summary: string, APISvc: string, fields: [{}] };
+  reportData: { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] };
 
   constructor(private reportService: ReportService) { }
 
@@ -18,7 +18,6 @@ export class ReportComponent implements OnInit {
 
   getReportData(): void {
     this.reportData = this.reportService.getData();
-    console.log(this.reportData.title);
   }
 
 

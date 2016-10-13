@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
 
-const DATA: { title: string, summary: string, APISvc: string, fields: [{}] } = {
+const API_DATA: [{ date: number, assetId: number, transferSize: number }] = [
+  {
+    date: Date.now(),
+    assetId: 12,
+    transferSize: 4000
+  },
+  {
+    date: Date.now(),
+    assetId: 52,
+    transferSize: 1000000
+  },
+  {
+    date: Date.now(),
+    assetId: 19,
+    transferSize: 125
+  },
+];
+
+const CONFIG_DATA: { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] } = {
   title: 'Generic Report',
   summary: 'This is the Generic Report summary',
-  APISvc: 'API_SVC',
+  APISvc: API_DATA,
   fields: [
     {
       minWidth: 100,
@@ -13,7 +31,7 @@ const DATA: { title: string, summary: string, APISvc: string, fields: [{}] } = {
       cellFilter: 'cpTimezone'
     },
     {
-      minWidth: 50,
+      minWidth: 5,
       maxWidth: 200,
       field: 'assetId',
       displayName: 'ID',
@@ -35,9 +53,8 @@ export class ReportService {
 
   constructor() { }
 
-  getData(): { title: string, summary: string, APISvc: string, fields: [{}] } {
-     return DATA;
+  getData(): { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] } {
+     return CONFIG_DATA;
   }
 }
-
 
