@@ -1,12 +1,10 @@
 <table>
   <tr>
-    <th>ID</th>
-    <th></th>
-    <th>Name</th>
+    <th *ngFor="let field of fields;">{{field.displayName}}</th>
   </tr>
-  <tr *ngFor="let user of users;">
-   <td>{{user.id}}</td>
-   <td>-</td>
-   <td>{{user.name}}</td>
+  <tr>
+   <td></td>
+   <td></td>
+   <td></td>
   </tr>
 </table>

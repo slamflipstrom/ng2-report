@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./report-grid.component.scss']
 })
 export class ReportGridComponent {
-  @Input() users;
+  @Input() fields: [{}];
 }
