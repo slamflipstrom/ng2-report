@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportService } from '../services/report.service';
+import { ReportService, IReportData } from '../services/report.service';
 
 @Component({
   selector: 'app-report',
@@ -8,7 +8,7 @@ import { ReportService } from '../services/report.service';
   providers: [ReportService]
 })
 export class ReportComponent implements OnInit {
-  reportData: { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] };
+  reportData: IReportData;
 
   constructor(private reportService: ReportService) { }
 
@@ -19,7 +19,4 @@ export class ReportComponent implements OnInit {
   getReportData(): void {
     this.reportData = this.reportService.getData();
   }
-
-
-
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const API_DATA: [{ date: number, assetId: number, transferSize: number }] = [
+const API_DATA: IAPISvc[]  = [
   {
     date: Date.now(),
     assetId: 12,
@@ -15,10 +15,10 @@ const API_DATA: [{ date: number, assetId: number, transferSize: number }] = [
     date: Date.now(),
     assetId: 19,
     transferSize: 125
-  },
+  }
 ];
 
-const CONFIG_DATA: { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] } = {
+const CONFIG_DATA: IReportData = {
   title: 'Generic Report',
   summary: 'This is the Generic Report summary',
   APISvc: API_DATA,
@@ -53,8 +53,20 @@ export class ReportService {
 
   constructor() { }
 
-  getData(): { title: string, summary: string, APISvc: [{ date: number, assetId: number, transferSize: number}], fields: [{}] } {
+  getData(): any {
      return CONFIG_DATA;
   }
 }
 
+export interface IReportData {
+  title: string;
+  summary: string;
+  APISvc: IAPISvc[];
+  fields: [{}];
+}
+
+export interface IAPISvc {
+  date: number;
+  assetId: number;
+  transferSize: number;
+}
