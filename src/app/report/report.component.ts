@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportService, IReportData } from '../services/report.service';
+import { ReportService } from '../services/report.service';
+import { IReportData } from '../shared/mock-data';
+
 
 @Component({
   selector: 'app-report',
