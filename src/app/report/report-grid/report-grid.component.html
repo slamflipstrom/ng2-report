@@ -3,6 +3,6 @@
     <input #gb class="form-control" type="text" pInputText size="50" placeholder="Type to filter...">
 </div>
 
-<p-dataTable [value]="records" [resizableColumns]="true" [globalFilter]="gb" [rows]="10" [paginator]="true">
-    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" sortable="true"></p-column>
+<p-dataTable [value]="records" resizableColumns="true" [globalFilter]="gb" [rows]="10" [paginator]="true">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" styleClass="column" sortable="true"></p-column>
 </p-dataTable>
