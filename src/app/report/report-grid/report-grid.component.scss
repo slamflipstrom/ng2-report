@@ -1,3 +1,35 @@
 :host {
   display: block;
  }
+
+.search-filter {
+  border-bottom: 1px solid #b4c0cc;
+  padding: 18px 0px 18px 0px;
+
+  input {
+    border: 1px solid #b4c0cc;
+    border-radius: 3px;
+    box-shadow: none;
+    display: inline-block;
+    font-size: 14px;
+    min-height: 30px;
+    padding: 3px 6px;
+    width: auto;
+    vertical-align: middle;
+  }
+}
+
+
+// Must use '/deep/' to target component level templates. Caused by style scoping in the shadow DOM
+// http://stackoverflow.com/questions/38599491/primeng-element-not-scoped-cant-be-styled-with-default-angular-2-viewencapsula
+:host /deep/ {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+      border-bottom: 1px solid #b4c0cc;
+      height: 40px;
+    }
+  }
+}
