@@ -124,29 +124,21 @@ export const CONFIG_DATA: IReportData = {
   summary: 'This is the Generic Report summary',
   APISvc: API_DATA,
   fields: [
-    {
-      minWidth: 100,
-      field: 'date',
-      displayName: 'Date',
-      type: 'date',
-      cellFilter: 'cpTimezone'
-    },
-    {
-      minWidth: 5,
-      maxWidth: 200,
-      field: 'assetId',
-      displayName: 'ID',
-      cellClass: 'asset',
-    },
-    {
-      minWidth: 50,
-      maxWidth: 200,
-      field: 'transferSize',
-      displayName: 'Size',
-      type: 'number',
-      cellFilter: 'cpAssetSize',
-      headerCellClass: 'text-right'
-    }
+      {
+        field: 'date',
+        header: 'Date',
+        styleClass: 'dateColumn'
+      },
+      {
+        field: 'assetId',
+        header: 'ID',
+        styleClass: 'numeral'
+      },
+      {
+        field: 'transferSize',
+        header: 'Size',
+        styleClass: 'numeral'
+      },
   ]};
 
 

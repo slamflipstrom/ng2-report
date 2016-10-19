@@ -7,18 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class ReportGridComponent implements OnInit {
-  @Input() fields: any;
-  @Input() records: any;
+  @Input() fields: any[];
+  @Input() records: any[];
 
-  reportData: any[];
-  cols: any[];
 
-  ngOnInit() {
-
-    this.cols = [
-      {field: 'date', header: 'Date'},
-      {field: 'assetId', header: 'ID'},
-      {field: 'transferSize', header: 'Size'},
-    ];
-  }
+  ngOnInit() { }
 }

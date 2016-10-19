@@ -1,24 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ReportService } from '../services/report.service';
-import { IReportData } from '../shared/mock-data';
+import { Component, Input } from '@angular/core';
 
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss'],
-  providers: [ReportService]
+  styleUrls: ['./report.component.scss']
 })
-export class ReportComponent implements OnInit {
-  reportData: IReportData;
 
-  constructor(private reportService: ReportService) { }
+export class ReportComponent {
+  @Input() title: string;
+  @Input() summary: string;
+  @Input() fields: any[];
+  @Input() records: any[];
 
-  ngOnInit(): void {
-    this.getReportData();
-  }
-
-  getReportData(): void {
-    this.reportData = this.reportService.getData();
-  }
 }

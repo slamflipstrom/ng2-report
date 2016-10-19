@@ -1,5 +1,11 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<div class="main-content">    
-  <app-report></app-report>  
+<div class="main-content">
+  <app-report
+    [title] = "reportData.title"
+    [summary] = "reportData.summary"
+    [fields] = "reportData.fields"
+    [records] = "reportData.APISvc"
+  >
+  </app-report>
 </div>

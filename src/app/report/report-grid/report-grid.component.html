@@ -4,5 +4,5 @@
 </div>
 
 <p-dataTable [value]="records" resizableColumns="true" [globalFilter]="gb" [rows]="10" [paginator]="true">
-    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" styleClass="column" sortable="true"></p-column>
+    <p-column *ngFor="let field of fields" [field]="field.field" [header]="field.header" styleClass="column" sortable="true"></p-column>
 </p-dataTable>
