@@ -15,6 +15,7 @@
     min-height: 30px;
     padding: 3px 6px;
     width: auto;
+    user-select: none;
     vertical-align: middle;
   }
 }
@@ -25,18 +26,56 @@
 // Must use '/deep/' to target component level templates. Caused by style scoping in the shadow DOM
 // http://stackoverflow.com/questions/38599491/primeng-element-not-scoped-cant-be-styled-with-default-angular-2-viewencapsula
 :host /deep/ {
-  table {
+  .ui-datatable {
     border-collapse: collapse;
+
+    table {
+      border: none;
+    }
+
+    tbody {
+      border: none;
+    }
 
     tr {
       border-bottom: 1px solid #b4c0cc;
+      border-left: none;
+      border-right: none;
       height: 40px;
     }
 
-    .column {
-      width: 200px;
-      min-width: 80px;
-      max-width: 200px;
+    td {
+      background: #ffffff;
+      border: none;
     }
+
+    th {
+      background: #ffffff;
+      border: none;
+      color: black;
+      text-align: left;
+      user-select: none;
+
+      .ui-sortable-column-icon {
+        color: #d1dee4;
+        margin: 0;
+      }
+    }
+
+    .ui-paginator {
+      background: #ffffff;
+      padding: 4px 0 0 0;
+
+      .ui-paginator-element {
+        border: none;
+      }
+
+      .ui-state-active {
+        background: none;
+        color: #0097e0;
+      }
+    }
+
+
   }
 }
