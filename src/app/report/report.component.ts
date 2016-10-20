@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'app-report',
+  selector: 'report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })

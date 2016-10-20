@@ -7,12 +7,14 @@ import { ReportModule } from './report/report.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { TestReportComponent } from './test-report/test-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    TestReportComponent
   ],
   imports: [
     BrowserModule,
