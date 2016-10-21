@@ -1,6 +1,6 @@
 :host {
   display: block;
- }
+}
 
 .search-filter {
   border-bottom: 1px solid #b4c0cc;
@@ -47,6 +47,10 @@
     td {
       background: #ffffff;
       border: none;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     th {
@@ -55,6 +59,7 @@
       color: black;
       text-align: left;
       user-select: none;
+      width: 150px;
 
       .ui-sortable-column-icon {
         color: #d1dee4;
@@ -76,6 +81,9 @@
       }
     }
 
+    .text-right {
+      text-align: right;
+    }
 
   }
 }

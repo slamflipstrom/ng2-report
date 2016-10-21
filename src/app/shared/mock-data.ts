@@ -132,12 +132,12 @@ export const CONFIG_DATA: IReportData = {
       {
         field: 'assetId',
         header: 'ID',
-        styleClass: 'numeral'
+        styleClass: 'text-right'
       },
       {
         field: 'transferSize',
         header: 'Size',
-        styleClass: 'numeral'
+        styleClass: 'text-right'
       },
   ]};
 

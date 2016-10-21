@@ -8,7 +8,8 @@
       <div class="title-export">
         <a href="">Export to PDF</a>
         <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <a href="">Export to CSV</a>
+        <a label="CSV" (click)="dt.exportCSV()">Export to CSV</a>
+        <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" style="float:left"></button>
       </div>
     </span>
   </div>
