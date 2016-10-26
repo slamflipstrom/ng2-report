@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+// import { IDataGridHeader } from '../../index';
 
 @Component({
   selector: 'report-header',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ReportHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() summary: string;
-  @Input() records: any[];
+  @Input() record_count: any[];
 
 
   ngOnInit() {

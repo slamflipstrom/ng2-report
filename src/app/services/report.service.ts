@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CONFIG_DATA, IReportData } from '../shared/mock-data';
+import { IReportData } from '../shared/interfaces';
+
+import { CONFIG_DATA } from '../shared/mock-data';
 
 @Injectable()
 export class ReportService {

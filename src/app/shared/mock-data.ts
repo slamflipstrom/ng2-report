@@ -1,15 +1,4 @@
-export interface IReportData {
-  title: string;
-  summary: string;
-  APISvc: IAPISvc[];
-  fields: [{}];
-}
-
-export interface IAPISvc {
-  date: number;
-  assetId: number;
-  transferSize: number;
-}
+import { IReportData, IAPISvc } from './index';
 
 const API_DATA: IAPISvc[]  = [
   {

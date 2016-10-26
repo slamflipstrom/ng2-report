@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../services/report.service';
-import { IReportData } from '../shared/mock-data';
+import { IReportData } from '../shared/interfaces';
 
 @Component({
   selector: 'test-report',
