@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ReportHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() summary: string;
+  @Input() records: any[];
 
 
   ngOnInit() {
