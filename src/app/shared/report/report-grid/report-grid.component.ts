@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'report-grid',
@@ -9,12 +9,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ReportGridComponent implements OnInit {
   @Input() fields: any[];
   @Input() records: any[];
-
+  @Output() rowDblClicked = new EventEmitter<string>();
 
   ngOnInit() { }
 
-  viewAsset($event) {
-    window.location.href = '/asset/' + $event.data.assetId;
+  assetInfo($event) {
+    this.rowDblClicked.emit($event.data.assetId);
   }
 
 }

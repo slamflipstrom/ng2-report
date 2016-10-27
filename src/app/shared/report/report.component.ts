@@ -12,5 +12,11 @@ export class ReportComponent {
   @Input() summary: string;
   @Input() fields: any[];
   @Input() records: any[];
+  @Input() assetInfo: any;
+
+  viewAsset(assetId) {
+    window.location.href = `/asset/${assetId}`;
+  }
+
 
 }
