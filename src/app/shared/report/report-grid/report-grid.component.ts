@@ -12,4 +12,9 @@ export class ReportGridComponent implements OnInit {
 
 
   ngOnInit() { }
+
+  viewAsset($event) {
+    window.location.href = '/asset/' + $event.data.assetId;
+  }
+
 }
