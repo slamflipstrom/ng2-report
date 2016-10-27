@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, Input, ViewChild } from '@angular/core';
+import { ReportGridComponent } from './report-grid/report-grid.component';
 
 @Component({
   selector: 'report',
@@ -12,11 +12,16 @@ export class ReportComponent {
   @Input() summary: string;
   @Input() fields: any[];
   @Input() records: any[];
-  @Input() assetInfo: any;
+
+  @ViewChild(ReportGridComponent)
+  private gridComponent: ReportGridComponent;
 
   viewAsset(assetId) {
     window.location.href = `/asset/${assetId}`;
   }
 
-
+  requestGridExport() {
+    console.log('grid export requested');
+    this.gridComponent.exportToPdf();
+  }
 }

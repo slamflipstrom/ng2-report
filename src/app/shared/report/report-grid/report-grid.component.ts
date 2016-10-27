@@ -17,4 +17,8 @@ export class ReportGridComponent implements OnInit {
     this.rowDblClicked.emit($event.data.assetId);
   }
 
+  exportToPdf(){
+    console.log('exporting to PDF!');
+  }
+
 }

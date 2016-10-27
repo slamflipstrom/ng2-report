@@ -6,7 +6,7 @@
     </span>
     <span class="title-right text-muted">
       <div class="title-export">
-        <a href="">Export to PDF</a>
+        <a (click)="requestExport()">Export to PDF</a>
         <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         <a label="CSV" (click)="dt.exportCSV()">Export to CSV</a>
         <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" style="float:left"></button>
