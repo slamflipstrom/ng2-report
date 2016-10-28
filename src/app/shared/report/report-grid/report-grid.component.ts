@@ -1,24 +1,28 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { PdfMakeService } from '../../../services/pdf-make/pdf-make.service';
 
 @Component({
   selector: 'report-grid',
   templateUrl: './report-grid.component.html',
-  styleUrls: ['./report-grid.component.scss']
+  styleUrls: ['./report-grid.component.scss'],
+  providers: [PdfMakeService]
 })
 
-export class ReportGridComponent implements OnInit {
+export class ReportGridComponent {
   @Input() fields: any[];
   @Input() records: any[];
   @Output() rowDblClicked = new EventEmitter<string>();
 
-  ngOnInit() { }
+  constructor(private pdfMakeService: PdfMakeService) { }
 
   assetInfo($event) {
     this.rowDblClicked.emit($event.data.assetId);
   }
 
-  exportToPdf(){
+  exportToPdf() {
     console.log('exporting to PDF!');
+    let records =  this.records;
+    this.pdfMakeService.generatePdf(records);
   }
 
 }

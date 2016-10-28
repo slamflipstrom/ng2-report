@@ -17,7 +17,10 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../bower_components/pdfmake/build/pdfmake.min.js",
+        "../bower_components/pdfmake/build/vfs_fonts.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
