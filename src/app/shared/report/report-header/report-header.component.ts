@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-// import { IDataGridHeader } from '../../index';
 
 @Component({
   selector: 'report-header',
@@ -11,13 +10,19 @@ export class ReportHeaderComponent implements OnInit {
   @Input() summary: string;
   @Input() record_count: any[];
   @Output() pdfClicked = new EventEmitter<string>();
+  @Output() csvClicked = new EventEmitter<string>();
 
   ngOnInit() {
   }
 
-  requestExport() {
+  requestPDFExport() {
     console.log('export to PDF was clicked');
     this.pdfClicked.emit();
+  }
+
+  requestCSVExport() {
+    console.log('export to CSV was clicked');
+    this.csvClicked.emit();
   }
 
 }

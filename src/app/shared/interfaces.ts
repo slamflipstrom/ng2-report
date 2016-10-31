@@ -7,6 +7,7 @@ export interface IReportData {
 
 export interface IAPISvc {
   date: number;
+  name: string;
   assetId: number;
   transferSize: number;
 }
@@ -33,14 +34,11 @@ export interface IColumnDefs {
   sortFunction?: any;
   styleClass?: string;
   style?: string;
-  type?: string;
+  type?: ITypeObject;
 }
 
-// export interface IDataGrid {
-
-// }
-
-// export interface IDataGridHeader {
-
-// }
-
+export interface ITypeObject {
+  date?: Date;
+  number?: number;
+  string?: string;
+}

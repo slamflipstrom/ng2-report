@@ -20,8 +20,13 @@ export class ReportComponent {
     window.location.href = `/asset/${assetId}`;
   }
 
-  requestGridExport() {
-    console.log('grid export requested');
+  requestGridExportPDF() {
+    console.log('grid export requested for PDF');
     this.gridComponent.exportToPdf();
+  }
+
+  requestGridExportCSV() {
+    console.log('grid export requested for CSV');
+    this.gridComponent.exportToCsv();
   }
 }

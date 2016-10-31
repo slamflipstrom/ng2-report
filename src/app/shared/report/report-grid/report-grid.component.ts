@@ -9,6 +9,7 @@ import { PdfMakeService } from '../../../services/pdf-make/pdf-make.service';
 })
 
 export class ReportGridComponent {
+  @Input() title: string;
   @Input() fields: any[];
   @Input() records: any[];
   @Output() rowDblClicked = new EventEmitter<string>();
@@ -22,7 +23,14 @@ export class ReportGridComponent {
   exportToPdf() {
     console.log('exporting to PDF!');
     let records =  this.records;
-    this.pdfMakeService.generatePdf(records);
+    let fields = this.fields;
+    let title = this.title;
+    this.pdfMakeService.generatePdf(records, fields, title);
+  }
+
+  exportToCsv() {
+    console.log('exporting to CSV!');
+    let records =  this.records;
   }
 
 }

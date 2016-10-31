@@ -2,10 +2,12 @@
   [title] = "title"
   [summary] = "summary"
   [record_count] = "records.length"
-  (pdfClicked) = "requestGridExport()">
+  (pdfClicked) = "requestGridExportPDF()"
+  (csvClicked) = "requestGridExportCSV()">
 </report-header>
 <report-grid
   [fields] = "fields"
   [records] = "records"
+  [title] = "title"
   (rowDblClicked) = "viewAsset($event)">
 </report-grid>
