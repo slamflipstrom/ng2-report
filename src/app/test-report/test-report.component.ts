@@ -1,6 +1,6 @@
+import { IColumnDefs, IReportData } from '../index';
 import { Component, OnInit } from '@angular/core';
 import { ReportDataService } from '../core/report/report-data.service';
-import { IReportData } from '../shared/interfaces';
 
 @Component({
   selector: 'test-report',
@@ -11,7 +11,10 @@ import { IReportData } from '../shared/interfaces';
 
 export class TestReportComponent implements OnInit {
 
-  reportData: IReportData;
+  columnDefs: IColumnDefs[];
+  reportData: IReportData[];
+  summary: string;
+  title: string;
 
   constructor(private reportService: ReportDataService) { }
 
@@ -20,7 +23,37 @@ export class TestReportComponent implements OnInit {
   }
 
   getReportData(): void {
+    this.columnDefs = this.getColumnDefs();
     this.reportData = this.reportService.getData();
+    this.summary = 'This is the Test-Report summary';
+    this.title = 'Test Report';
   }
+
+  private getColumnDefs(): IColumnDefs[] {
+
+    return [
+      {
+        field: 'date',
+        header: 'Date',
+        styleClass: 'dateColumn',
+        type: 'date',
+      },
+      {
+        field: 'name',
+        header: 'Name',
+        styleClass: ''
+      },
+      {
+        field: 'assetId',
+        header: 'ID',
+        styleClass: 'right'
+      },
+      {
+        field: 'transferSize',
+        header: 'Size',
+        styleClass: 'right'
+      },
+    ]
+  };
 
 }

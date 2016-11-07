@@ -45,4 +45,8 @@ export class RandomService {
     return this.chanceService.url({ domain: 'www.google.com' });
   }
 
+  getRandomTimestamp(): number {
+    return this.chanceService.timestamp();
+  }
+
 }

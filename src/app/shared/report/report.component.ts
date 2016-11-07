@@ -14,6 +14,7 @@ export class ReportComponent {
   @Input() records: any[];
 
   @ViewChild(ReportGridComponent)
+
   private gridComponent: ReportGridComponent;
 
   viewAsset(assetId) {
@@ -21,7 +22,6 @@ export class ReportComponent {
   }
 
   requestGridExportPDF() {
-    console.log('grid export requested for PDF');
     this.gridComponent.exportToPdf();
   }
 
