@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { TestReportComponent } from './test-report/test-report.component';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TestReportComponent } from './test-report/test-report.component';
     FormsModule,
     HttpModule,
     // routing,
-    SharedModule,
+    CoreModule,
+    SharedModule
   ],
   // providers: [appRoutingProviders],
   bootstrap: [AppComponent]

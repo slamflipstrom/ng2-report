@@ -8,6 +8,6 @@ import { ReportModule } from './report/report.module';
     CommonModule,
   ],
   exports: [ReportModule],
-  declarations: []
+  declarations: [],
 })
 export class SharedModule { }

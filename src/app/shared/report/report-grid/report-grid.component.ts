@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PdfMakeService } from '../../../services/pdf-make/pdf-make.service';
+import { PdfMakeService } from '../../pdf-make/pdf-make.service';
 
 @Component({
   selector: 'report-grid',
   templateUrl: './report-grid.component.html',
   styleUrls: ['./report-grid.component.scss'],
-  providers: [PdfMakeService]
+  providers: []
 })
 
 export class ReportGridComponent {

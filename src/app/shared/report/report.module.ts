@@ -5,6 +5,8 @@ import { ReportHeaderComponent } from './report-header/report-header.component';
 import { ReportGridComponent } from './report-grid/report-grid.component';
 import { DataTableModule, PaginatorModule } from 'primeng/primeng';
 
+import { PdfMakeService } from '../pdf-make/pdf-make.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,6 +14,9 @@ import { DataTableModule, PaginatorModule } from 'primeng/primeng';
     PaginatorModule
   ],
   declarations: [ReportComponent, ReportHeaderComponent, ReportGridComponent],
-  exports: [ReportComponent]
+  exports: [ReportComponent],
+  providers: [
+    PdfMakeService,
+  ]
 })
 export class ReportModule { }
