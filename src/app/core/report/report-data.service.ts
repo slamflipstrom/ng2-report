@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { RandomService } from '../../core/random/random.service';
-import { IReportData, IAPISvc } from '../../index';
+import { IReportData, IAPISvcData } from '../../index';
 
 @Injectable()
 export class ReportDataService {
@@ -28,7 +28,7 @@ export class ReportDataService {
     return row;
   };
 
-  buildRandomData(numRows): IAPISvc[] {
+  buildRandomData(numRows): IAPISvcData[] {
     let data = [];
     for (let i = 1; i < numRows; i++) {
       data.push(this.buildRow());

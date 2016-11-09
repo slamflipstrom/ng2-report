@@ -1,5 +1,6 @@
-import { IColumnDefs, IReportData } from '../index';
+import { IColumnDefs, IReportData, IAPISvcData } from '../index';
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ReportDataService } from '../core/report/report-data.service';
 
 @Component({
@@ -10,13 +11,12 @@ import { ReportDataService } from '../core/report/report-data.service';
 })
 
 export class TestReportComponent implements OnInit {
-
   columnDefs: IColumnDefs[];
   reportData: IReportData[];
   summary: string;
   title: string;
 
-  constructor(private reportService: ReportDataService) { }
+  constructor(private reportService: ReportDataService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getReportData();
@@ -24,9 +24,18 @@ export class TestReportComponent implements OnInit {
 
   getReportData(): void {
     this.columnDefs = this.getColumnDefs();
-    this.reportData = this.reportService.getData();
+    let rawReportData = this.reportService.getData();
+    this.reportData = this.filterData(rawReportData);
     this.summary = 'This is the Test-Report summary';
     this.title = 'Test Report';
+  }
+
+  filterData(data): any {
+    let filteredData = data.map( (row: IAPISvcData) => {
+      row.date = this.datePipe.transform(row.date, 'short');
+      return row;
+    });
+    return filteredData;
   }
 
   private getColumnDefs(): IColumnDefs[] {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RandomService } from './random/random.service';
 import { ReportDataService } from './report/report-data.service';
 
@@ -10,7 +10,8 @@ import { ReportDataService } from './report/report-data.service';
   ],
   providers: [
     RandomService,
-    ReportDataService
+    ReportDataService,
+    DatePipe
   ]
 })
 export class CoreModule { }

@@ -13,7 +13,11 @@ import { PdfMakeService } from '../pdf-make/pdf-make.service';
     DataTableModule,
     PaginatorModule
   ],
-  declarations: [ReportComponent, ReportHeaderComponent, ReportGridComponent],
+  declarations: [
+    ReportComponent,
+    ReportHeaderComponent,
+    ReportGridComponent,
+  ],
   exports: [ReportComponent],
   providers: [
     PdfMakeService,
