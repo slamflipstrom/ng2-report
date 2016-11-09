@@ -23,7 +23,7 @@ export class ReportDataService {
       date: this.random.getRandomTimestamp(),
       name: this.random.getRandomName(),
       assetId: this.random.getRandomInt(1, 100000),
-      transferSize: this.random.getRandomInt(1, 1000000000)
+      transferSize: this.random.getRandomInt(0, 1000000000)
     };
     return row;
   };

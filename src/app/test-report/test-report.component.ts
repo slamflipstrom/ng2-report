@@ -1,3 +1,4 @@
+import { FileSizePipe } from './../core/file-size.pipe';
 import { IColumnDefs, IReportData, IAPISvcData } from '../index';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
@@ -16,7 +17,11 @@ export class TestReportComponent implements OnInit {
   summary: string;
   title: string;
 
-  constructor(private reportService: ReportDataService, private datePipe: DatePipe) { }
+  constructor(
+    private reportService: ReportDataService,
+    private datePipe: DatePipe,
+    private fileSizePipe: FileSizePipe
+  ) { }
 
   ngOnInit(): void {
     this.getReportData();
@@ -33,6 +38,12 @@ export class TestReportComponent implements OnInit {
   filterData(data): any {
     let filteredData = data.map( (row: IAPISvcData) => {
       row.date = this.datePipe.transform(row.date, 'short');
+      if (typeof row.transferSize === 'number') {
+        row.transferSize = this.fileSizePipe.transform(row.transferSize, 0);
+      } else if
+      (typeof row.transferSize === 'string') {
+        row.transferSize = this.fileSizePipe.transformString(row.transferSize, 0);
+      }
       return row;
     });
     return filteredData;

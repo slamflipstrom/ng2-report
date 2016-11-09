@@ -9,7 +9,7 @@ export interface IAPISvcData {
   date?: IDate;
   name?: string;
   assetId?: number;
-  transferSize?: number;
+  transferSize?: number | string;
 }
 
 export interface IColumnDefs {
