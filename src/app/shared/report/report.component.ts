@@ -26,7 +26,6 @@ export class ReportComponent {
   }
 
   requestGridExportCSV() {
-    console.log('grid export requested for CSV');
     this.gridComponent.exportToCsv();
   }
 }

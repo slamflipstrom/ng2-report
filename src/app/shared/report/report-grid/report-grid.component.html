@@ -10,5 +10,10 @@
     [rows]="10"
     [paginator]="true"
     (onRowDblclick)="assetInfo($event)">
-        <p-column *ngFor="let field of fields" [field]="field.field" [header]="field.header" styleClass="column" sortable="true"></p-column>
+        <p-column *ngFor="let field of fields"
+            [field]="field.field"
+            [header]="field.header"
+            styleClass="column"
+            sortable="true">
+        </p-column>
 </p-dataTable>

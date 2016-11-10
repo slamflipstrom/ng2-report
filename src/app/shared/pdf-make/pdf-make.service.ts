@@ -116,7 +116,6 @@ export class PdfMakeService {
           } else {
             cellData.push(currentValue);
           };
-          // cellData.push({text: text, alignment: 'right'});
         }
         results.push(cellData);
       }

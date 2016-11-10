@@ -6,6 +6,7 @@ import { ReportGridComponent } from './report-grid/report-grid.component';
 import { DataTableModule, PaginatorModule } from 'primeng/primeng';
 
 import { PdfMakeService } from '../pdf-make/pdf-make.service';
+import { CsvExportService } from '../csv-export/csv-export.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { PdfMakeService } from '../pdf-make/pdf-make.service';
   exports: [ReportComponent],
   providers: [
     PdfMakeService,
+    CsvExportService
   ]
 })
 export class ReportModule { }

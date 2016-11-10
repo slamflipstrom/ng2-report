@@ -16,12 +16,10 @@ export class ReportHeaderComponent implements OnInit {
   }
 
   requestPDFExport() {
-    console.log('export to PDF was clicked');
     this.pdfClicked.emit();
   }
 
   requestCSVExport() {
-    console.log('export to CSV was clicked');
     this.csvClicked.emit();
   }
 

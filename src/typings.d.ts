@@ -5,3 +5,4 @@
 declare var System: any;
 
 declare var pdfMake: any;
+declare var json2csv: any;

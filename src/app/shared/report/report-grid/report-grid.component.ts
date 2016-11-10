@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PdfMakeService } from '../../pdf-make/pdf-make.service';
+import { CsvExportService } from '../../csv-export/csv-export.service';
 
 @Component({
   selector: 'report-grid',
@@ -14,23 +15,21 @@ export class ReportGridComponent {
   @Input() records: any[];
   @Output() rowDblClicked = new EventEmitter<string>();
 
-  constructor(private pdfMakeService: PdfMakeService) { }
+  constructor(
+    private pdfMakeService: PdfMakeService,
+    private csvExportService: CsvExportService
+  ) { }
 
   assetInfo($event) {
     this.rowDblClicked.emit($event.data.assetId);
   }
 
   exportToPdf() {
-    console.log('exporting to PDF!');
-    let records =  this.records;
-    let fields = this.fields;
-    let title = this.title;
-    this.pdfMakeService.generatePdf(records, fields, title);
+    this.pdfMakeService.generatePdf(this.records, this.fields, this.title);
   }
 
   exportToCsv() {
-    console.log('exporting to CSV!');
-    let records =  this.records;
+    this.csvExportService.downloadCsv(this.records, this.fields, this.title);
   }
 
 }
