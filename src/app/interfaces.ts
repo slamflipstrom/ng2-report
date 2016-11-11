@@ -1,3 +1,16 @@
+export interface IReportAPIRequest {
+  currentPage: number;
+  label: string;
+  pageSize: number;
+  searchTerm: string;
+  sortOptions: SortOptionType;
+}
+
+export type SortOptionType = {
+  isAscending: boolean;
+  sortOption: any;
+}
+
 export interface IReportData {
   title: string;
   summary: string;
@@ -6,7 +19,7 @@ export interface IReportData {
 }
 
 export interface IAPISvcData {
-  date?: IDate;
+  date?: DateType;
   name?: string;
   assetId?: number;
   transferSize?: number | string;
@@ -42,4 +55,4 @@ export interface ITypeObject {
   string?: string;
 }
 
-export type IDate = Date | number | string
+export type DateType = Date | number | string

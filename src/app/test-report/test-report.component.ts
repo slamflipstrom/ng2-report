@@ -1,7 +1,7 @@
-import { FileSizePipe } from './../core/file-size.pipe';
-import { IColumnDefs, IReportData, IAPISvcData } from '../index';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { FileSizePipe } from './../core/file-size.pipe';
+import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../index';
 import { ReportDataService } from '../core/report/report-data.service';
 
 @Component({
@@ -16,9 +16,19 @@ export class TestReportComponent implements OnInit {
   reportData: IReportData[];
   summary: string;
   title: string;
+  requestData: IReportAPIRequest = {
+    currentPage: 1,
+    label: '',
+    pageSize: 25,
+    searchTerm: '',
+    sortOptions: {
+      isAscending: false,
+      sortOption: undefined
+    }
+  }
 
   constructor(
-    private reportService: ReportDataService,
+    private reportDataService: ReportDataService,
     private datePipe: DatePipe,
     private fileSizePipe: FileSizePipe
   ) { }
@@ -29,12 +39,17 @@ export class TestReportComponent implements OnInit {
 
   getReportData(): void {
     this.columnDefs = this.getColumnDefs();
-    let rawReportData = this.reportService.getData();
+    let rawReportData = this.reportDataService.getData();
     this.reportData = this.filterData(rawReportData);
     this.summary = 'This is the Test-Report summary';
     this.title = 'Test Report';
   }
 
+  changePage(pageNumber): void {
+    this.reportDataService.changePage(this.requestData.currentPage);
+  }
+
+  // This needs to be moved out of the class and into service or component
   filterData(data): any {
     let filteredData = data.map( (row: IAPISvcData) => {
       row.date = this.datePipe.transform(row.date, 'short');

@@ -1,5 +1,8 @@
+import { ReportDataService } from './../../core/report/report-data.service';
 import { Component, Input, ViewChild } from '@angular/core';
 import { ReportGridComponent } from './report-grid/report-grid.component';
+import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../../index';
+
 
 @Component({
   selector: 'report',
@@ -12,6 +15,8 @@ export class ReportComponent {
   @Input() summary: string;
   @Input() fields: any[];
   @Input() records: any[];
+
+  constructor(private reportDataService:ReportDataService) {}
 
   @ViewChild(ReportGridComponent)
 

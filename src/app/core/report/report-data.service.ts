@@ -12,6 +12,10 @@ export class ReportDataService {
     return this.getRandomData();
   }
 
+  changePage(pageNumber) {
+    this.getData();
+  }
+
   getRandomData(): any {
     const numRows = this.random.getRandomInt(100, 200);
     const data = this.buildRandomData(numRows);
