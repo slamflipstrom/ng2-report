@@ -14,6 +14,7 @@ export class ReportGridComponent {
   @Input() fields: any[];
   @Input() records: any[];
   @Output() rowDblClicked = new EventEmitter<string>();
+  @Output() dataRequested = new EventEmitter<string>();
 
   constructor(
     private pdfMakeService: PdfMakeService,
@@ -22,6 +23,10 @@ export class ReportGridComponent {
 
   assetInfo($event) {
     this.rowDblClicked.emit($event.data.assetId);
+  }
+
+  loadData($event) {
+    this.dataRequested.emit($event.data);
   }
 
   exportToPdf() {

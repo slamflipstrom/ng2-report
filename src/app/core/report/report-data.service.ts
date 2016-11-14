@@ -1,25 +1,39 @@
 import { Injectable } from '@angular/core';
-
 import { RandomService } from '../../core/random/random.service';
 import { IReportData, IAPISvcData } from '../../index';
+import { DatePipe } from '@angular/common';
+import { FileSizePipe } from './../../core/file-size.pipe'
 
 @Injectable()
 export class ReportDataService {
 
-  constructor(private random: RandomService) { }
+  constructor(private random: RandomService,     private datePipe: DatePipe,
+    private fileSizePipe: FileSizePipe) { }
 
-  getData(): IReportData[] {
-    return this.getRandomData();
-  }
-
-  changePage(pageNumber) {
-    this.getData();
+  getData(lazy: boolean = false): IReportData[] {
+    let rawReportData = this.getRandomData();
+    let filteredData = this.filterData(rawReportData);
+    return filteredData;
   }
 
   getRandomData(): any {
     const numRows = this.random.getRandomInt(100, 200);
     const data = this.buildRandomData(numRows);
     return data;
+  }
+
+  filterData(data): any {
+    let filteredData = data.map( (row: IAPISvcData) => {
+      row.date = this.datePipe.transform(row.date, 'short');
+      if (typeof row.transferSize === 'number') {
+        row.transferSize = this.fileSizePipe.transform(row.transferSize, 0);
+      } else if
+      (typeof row.transferSize === 'string') {
+        row.transferSize = this.fileSizePipe.transformString(row.transferSize, 0);
+      }
+      return row;
+    });
+    return filteredData;
   }
 
   buildRow() {

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { FileSizePipe } from './../core/file-size.pipe';
 import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../index';
 import { ReportDataService } from '../core/report/report-data.service';
 
@@ -13,6 +11,7 @@ import { ReportDataService } from '../core/report/report-data.service';
 
 export class TestReportComponent implements OnInit {
   columnDefs: IColumnDefs[];
+  config: Object;
   reportData: IReportData[];
   summary: string;
   title: string;
@@ -28,10 +27,7 @@ export class TestReportComponent implements OnInit {
   }
 
   constructor(
-    private reportDataService: ReportDataService,
-    private datePipe: DatePipe,
-    private fileSizePipe: FileSizePipe
-  ) { }
+    private reportDataService: ReportDataService) { }
 
   ngOnInit(): void {
     this.getReportData();
@@ -39,29 +35,17 @@ export class TestReportComponent implements OnInit {
 
   getReportData(): void {
     this.columnDefs = this.getColumnDefs();
-    let rawReportData = this.reportDataService.getData();
-    this.reportData = this.filterData(rawReportData);
+    this.config = this.getReportConfig();
+    this.reportData = this.reportDataService.getData(this.config['lazy']);
     this.summary = 'This is the Test-Report summary';
     this.title = 'Test Report';
   }
 
-  changePage(pageNumber): void {
-    this.reportDataService.changePage(this.requestData.currentPage);
-  }
-
   // This needs to be moved out of the class and into service or component
-  filterData(data): any {
-    let filteredData = data.map( (row: IAPISvcData) => {
-      row.date = this.datePipe.transform(row.date, 'short');
-      if (typeof row.transferSize === 'number') {
-        row.transferSize = this.fileSizePipe.transform(row.transferSize, 0);
-      } else if
-      (typeof row.transferSize === 'string') {
-        row.transferSize = this.fileSizePipe.transformString(row.transferSize, 0);
-      }
-      return row;
-    });
-    return filteredData;
+  private getReportConfig(): Object {
+    return {
+      lazy: true
+    }
   }
 
   private getColumnDefs(): IColumnDefs[] {

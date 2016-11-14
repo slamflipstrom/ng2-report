@@ -15,12 +15,21 @@ export class ReportComponent {
   @Input() summary: string;
   @Input() fields: any[];
   @Input() records: any[];
+  @Input() config: any[];
 
   constructor(private reportDataService:ReportDataService) {}
 
   @ViewChild(ReportGridComponent)
 
   private gridComponent: ReportGridComponent;
+
+  getDataLazy() {
+    // if (this.config.lazy === true){
+      // call API on each pagination
+    // } else {
+      // call API once
+    // }
+  }
 
   viewAsset(assetId) {
     window.location.href = `/asset/${assetId}`;

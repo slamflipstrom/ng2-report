@@ -4,11 +4,13 @@
 </div>
 
 <p-dataTable
-    [value]="records"
-    resizableColumns="true"
     [globalFilter]="gb"
-    [rows]="10"
+    [lazy]="true"
+    (onLazyLoad)="loadData($event)"
     [paginator]="true"
+    resizableColumns="true"
+    [rows]="10"
+    [value]="records"
     (onRowDblclick)="assetInfo($event)">
         <p-column *ngFor="let field of fields"
             [field]="field.field"
