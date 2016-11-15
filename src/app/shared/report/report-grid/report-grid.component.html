@@ -8,6 +8,7 @@
     [lazy]="config['lazy']"
     (onLazyLoad)="loadData($event)"
     [paginator]="true"
+    [totalRecords]="recordCount"
     resizableColumns="true"
     [rows]="10"
     [value]="records"

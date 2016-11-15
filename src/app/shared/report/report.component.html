@@ -1,7 +1,7 @@
 <report-header
   [title] = "title"
   [summary] = "summary"
-  [record_count] = "records.length"
+  [record_count] = "recordCount"
   (pdfClicked) = "requestGridExportPDF()"
   (csvClicked) = "requestGridExportCSV()">
 </report-header>
@@ -10,6 +10,7 @@
   [records] = "records"
   [title] = "title"
   [config] = "config"
+  [recordCount] = "recordCount"
   (rowDblClicked) = "viewAsset($event)"
   (dataRequestedLazy) = "getDataLazy($event)">
 </report-grid>

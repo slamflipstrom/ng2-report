@@ -14,6 +14,7 @@ export class ReportGridComponent {
   @Input() fields: any[];
   @Input() records: any[];
   @Input() config: any[];
+  @Input() recordCount: number;
   @Output() rowDblClicked: EventEmitter<any> = new EventEmitter<string>();
   @Output() dataRequestedLazy: EventEmitter<any> = new EventEmitter<string>();
 

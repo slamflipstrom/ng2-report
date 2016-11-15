@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
 import { RandomService } from '../../core/random/random.service';
-import { IReportData, IAPISvcData } from '../../index';
+import { IReportData, IAPISvcData, IAPIDataResponse } from '../../index';
 import { DatePipe } from '@angular/common';
 import { FileSizePipe } from './../../core/file-size.pipe'
 
 @Injectable()
 export class ReportDataService {
 
-  constructor(private random: RandomService,     private datePipe: DatePipe,
-    private fileSizePipe: FileSizePipe) { }
+  // This is to model the API calls in V3 that return page size data with a total count
+  private lotsOfData: IAPISvcData[] = this.getRandomData();
 
-  getData(lazy: boolean = false, event): IReportData[] {
-    if (lazy === false) {
-      let rawReportData = this.getRandomData();
-      let filteredData = this.filterData(rawReportData);
-      return filteredData;
-    } else {
-      let rawReportData = this.getRandomData2();
-      let filteredData = this.filterData(rawReportData)
-      if (event !== undefined) {
-        return filteredData.slice(event.first, (event.first + event.rows));
-      } else {
-        return filteredData;
-      }
+  // This is to mimic the API calls in V3 that always return 50 results
+  private setAmountOfData: IAPISvcData[] = this.getRandomData2();
+
+  constructor(private random: RandomService,
+              private datePipe: DatePipe,
+              private fileSizePipe: FileSizePipe) { }
+
+  getData(event): Promise<IAPIDataResponse> {
+    let filteredData = this.transformData(this.setAmountOfData);
+    return Promise.resolve(
+            this.buildReportData(filteredData, this.setAmountOfData.length)
+      )
+  }
+
+  getLazyData(event): Promise<IAPIDataResponse> {
+    // There would be a call to the API to populate this.setAmountOfData
+    let filteredData = this.transformData(this.lotsOfData);
+    if (event !== undefined) {
+      return Promise.resolve(
+            this.buildReportData(filteredData.slice(event.first, (event.first + event.rows)), this.setAmountOfData.length)
+      );
     }
+  }
+
+  // reportData.length != totalCount in the case of serverside paging
+  private buildReportData(reportData: IAPISvcData[], totalCount: number) {
+    return {
+        apiData: reportData,
+        totalCount: totalCount
+      };
   }
 
   getRandomData(): any {
@@ -33,13 +49,11 @@ export class ReportDataService {
   }
 
   getRandomData2(): any {
-    const numRows = this.random.getRandomInt(40, 50);
-    const data = this.buildRandomData(numRows);
-    return data;
+    return this.buildRandomData(50);;
   }
 
-  filterData(data): any {
-    let filteredData = data.map( (row: IAPISvcData) => {
+  transformData(data): IAPISvcData[] {
+    let transformedData = data.map( (row: IAPISvcData) => {
       row.date = this.datePipe.transform(row.date, 'short');
       if (typeof row.transferSize === 'number') {
         row.transferSize = this.fileSizePipe.transform(row.transferSize, 0);
@@ -49,7 +63,7 @@ export class ReportDataService {
       }
       return row;
     });
-    return filteredData;
+    return transformedData;
   }
 
   buildRow() {

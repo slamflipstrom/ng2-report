@@ -12,7 +12,8 @@ import { ReportDataService } from '../core/report/report-data.service';
 export class TestReportComponent implements OnInit {
   columnDefs: IColumnDefs[];
   config: Object;
-  reportData: IReportData[];
+  apiSvcData: IAPISvcData[] = [];
+  recordCount: number;
   summary: string;
   title: string;
   requestData: IReportAPIRequest = {
@@ -33,17 +34,20 @@ export class TestReportComponent implements OnInit {
     this.getReportData();
   }
 
-  getReportData($event?): void {
+  getReportData(): void {
     this.columnDefs = this.getColumnDefs();
     this.config = this.getReportConfig();
-    this.reportData = this.requestServiceData(this.config['lazy'], $event);
     this.summary = 'This is the Test-Report summary';
     this.title = 'Test Report';
   }
 
-  requestServiceData(lazy, $event):IReportData[] {
+  requestServiceData(lazy, $event) {
     console.log(3);
-    return this.reportDataService.getData(lazy, $event);
+    if ($event == null || $event == undefined) {return}
+    this.reportDataService.getLazyData($event).then((data) => {
+      this.apiSvcData = data.apiData;
+      this.recordCount = data.totalCount;
+    });
   }
 
   private getReportConfig(): Object {

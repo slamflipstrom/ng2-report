@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ReportHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() summary: string;
-  @Input() record_count: any[];
+  @Input() record_count: number;
   @Output() pdfClicked = new EventEmitter<string>();
   @Output() csvClicked = new EventEmitter<string>();
 

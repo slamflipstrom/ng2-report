@@ -16,6 +16,7 @@ export class ReportComponent {
   @Input() fields: any[];
   @Input() records: any[];
   @Input() config: any[];
+  @Input() recordCount: number;
   @Output() dataRequestedLazy: EventEmitter<any> = new EventEmitter<string>();
 
   constructor(private reportDataService:ReportDataService) {}

@@ -14,8 +14,13 @@ export type SortOptionType = {
 export interface IReportData {
   title: string;
   summary: string;
-  APISvc: IAPISvcData[];
+  dataResponse: IAPIDataResponse;
   fields: IColumnDefs[];
+}
+
+export interface IAPIDataResponse {
+  apiData: IAPISvcData[];
+  totalCount: number;
 }
 
 export interface IAPISvcData {
