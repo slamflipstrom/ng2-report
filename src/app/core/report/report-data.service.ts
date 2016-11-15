@@ -10,14 +10,30 @@ export class ReportDataService {
   constructor(private random: RandomService,     private datePipe: DatePipe,
     private fileSizePipe: FileSizePipe) { }
 
-  getData(lazy: boolean = false): IReportData[] {
-    let rawReportData = this.getRandomData();
-    let filteredData = this.filterData(rawReportData);
-    return filteredData;
+  getData(lazy: boolean = false, event): IReportData[] {
+    if (lazy === false) {
+      let rawReportData = this.getRandomData();
+      let filteredData = this.filterData(rawReportData);
+      return filteredData;
+    } else {
+      let rawReportData = this.getRandomData2();
+      let filteredData = this.filterData(rawReportData)
+      if (event !== undefined) {
+        return filteredData.slice(event.first, (event.first + event.rows));
+      } else {
+        return filteredData;
+      }
+    }
   }
 
   getRandomData(): any {
     const numRows = this.random.getRandomInt(100, 200);
+    const data = this.buildRandomData(numRows);
+    return data;
+  }
+
+  getRandomData2(): any {
+    const numRows = this.random.getRandomInt(40, 50);
     const data = this.buildRandomData(numRows);
     return data;
   }

@@ -33,15 +33,19 @@ export class TestReportComponent implements OnInit {
     this.getReportData();
   }
 
-  getReportData(): void {
+  getReportData($event?): void {
     this.columnDefs = this.getColumnDefs();
     this.config = this.getReportConfig();
-    this.reportData = this.reportDataService.getData(this.config['lazy']);
+    this.reportData = this.requestServiceData(this.config['lazy'], $event);
     this.summary = 'This is the Test-Report summary';
     this.title = 'Test Report';
   }
 
-  // This needs to be moved out of the class and into service or component
+  requestServiceData(lazy, $event):IReportData[] {
+    console.log(3);
+    return this.reportDataService.getData(lazy, $event);
+  }
+
   private getReportConfig(): Object {
     return {
       lazy: true

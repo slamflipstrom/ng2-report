@@ -13,8 +13,9 @@ export class ReportGridComponent {
   @Input() title: string;
   @Input() fields: any[];
   @Input() records: any[];
-  @Output() rowDblClicked = new EventEmitter<string>();
-  @Output() dataRequested = new EventEmitter<string>();
+  @Input() config: any[];
+  @Output() rowDblClicked: EventEmitter<any> = new EventEmitter<string>();
+  @Output() dataRequestedLazy: EventEmitter<any> = new EventEmitter<string>();
 
   constructor(
     private pdfMakeService: PdfMakeService,
@@ -26,7 +27,8 @@ export class ReportGridComponent {
   }
 
   loadData($event) {
-    this.dataRequested.emit($event.data);
+    console.log(1);
+    this.dataRequestedLazy.emit($event);
   }
 
   exportToPdf() {

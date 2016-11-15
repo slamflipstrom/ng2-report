@@ -1,5 +1,5 @@
 import { ReportDataService } from './../../core/report/report-data.service';
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { ReportGridComponent } from './report-grid/report-grid.component';
 import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../../index';
 
@@ -16,6 +16,7 @@ export class ReportComponent {
   @Input() fields: any[];
   @Input() records: any[];
   @Input() config: any[];
+  @Output() dataRequestedLazy: EventEmitter<any> = new EventEmitter<string>();
 
   constructor(private reportDataService:ReportDataService) {}
 
@@ -23,16 +24,13 @@ export class ReportComponent {
 
   private gridComponent: ReportGridComponent;
 
-  getDataLazy() {
-    // if (this.config.lazy === true){
-      // call API on each pagination
-    // } else {
-      // call API once
-    // }
-  }
-
   viewAsset(assetId) {
     window.location.href = `/asset/${assetId}`;
+  }
+
+  getDataLazy($event) {
+    console.log(2);
+    this.dataRequestedLazy.emit($event);
   }
 
   requestGridExportPDF() {
