@@ -11,7 +11,7 @@ export type SortOptionType = {
   sortOption: any;
 }
 
-export interface IReportData {
+export interface IReportConfig {
   title: string;
   summary: string;
   dataResponse: IAPIDataResponse;

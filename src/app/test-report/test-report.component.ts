@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../index';
+import { IColumnDefs, IReportConfig, IAPISvcData, IReportAPIRequest } from '../index';
 import { ReportDataService } from '../core/report/report-data.service';
 
 @Component({
@@ -27,8 +27,7 @@ export class TestReportComponent implements OnInit {
     }
   }
 
-  constructor(
-    private reportDataService: ReportDataService) { }
+  constructor(private reportDataService: ReportDataService) { }
 
   ngOnInit(): void {
     this.getReportData();
@@ -57,7 +56,6 @@ export class TestReportComponent implements OnInit {
   }
 
   private getColumnDefs(): IColumnDefs[] {
-
     return [
       {
         field: 'date',

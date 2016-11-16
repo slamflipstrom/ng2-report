@@ -1,7 +1,7 @@
 import { ReportDataService } from './../../core/report/report-data.service';
 import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { ReportGridComponent } from './report-grid/report-grid.component';
-import { IColumnDefs, IReportData, IAPISvcData, IReportAPIRequest } from '../../index';
+import { IColumnDefs, IReportConfig, IAPISvcData, IReportAPIRequest } from '../../index';
 
 
 @Component({

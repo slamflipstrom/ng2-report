@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RandomService } from '../../core/random/random.service';
-import { IReportData, IAPISvcData, IAPIDataResponse } from '../../index';
+import { IReportConfig, IAPISvcData, IAPIDataResponse } from '../../index';
 import { DatePipe } from '@angular/common';
 import { FileSizePipe } from './../../core/file-size.pipe'
 
@@ -21,7 +21,7 @@ export class ReportDataService {
     let filteredData = this.transformData(this.setAmountOfData);
     return Promise.resolve(
             this.buildReportData(filteredData, this.setAmountOfData.length)
-      )
+    )
   }
 
   getLazyData(event): Promise<IAPIDataResponse> {
@@ -49,7 +49,7 @@ export class ReportDataService {
   }
 
   getRandomData2(): any {
-    return this.buildRandomData(50);;
+    return this.buildRandomData(50);
   }
 
   transformData(data): IAPISvcData[] {
