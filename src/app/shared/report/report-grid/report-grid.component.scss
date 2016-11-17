@@ -1,3 +1,5 @@
+$grid-breakpoint: "(max-width: 560px)";
+
 :host {
   display: block;
 }
@@ -44,7 +46,6 @@
     td {
       background: #ffffff;
       border: none;
-      max-width: 100px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -53,6 +54,13 @@
     td.number{
       text-align: right;
     }
+
+    //prevents numeral columns from right-aligning when table shifts to responsive columns
+    @media #{$grid-breakpoint}{
+      td.number{
+        text-align: left !important;
+        }
+      }
 
     th.number{
       text-align: right;
