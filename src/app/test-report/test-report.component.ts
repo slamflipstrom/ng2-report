@@ -66,17 +66,20 @@ export class TestReportComponent implements OnInit {
       {
         field: 'name',
         header: 'Name',
-        styleClass: ''
+        styleClass: '',
+        type: 'string'
       },
       {
         field: 'assetId',
         header: 'ID',
-        styleClass: 'right'
+        styleClass: 'right',
+        type: 'number'
       },
       {
         field: 'transferSize',
         header: 'Size',
-        styleClass: 'right'
+        styleClass: 'right',
+        type: 'number'
       },
     ]
   };

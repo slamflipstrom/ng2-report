@@ -20,9 +20,6 @@
   }
 }
 
-
-
-
 // Must use '/deep/' to target component level templates. Caused by style scoping in the shadow DOM
 // http://stackoverflow.com/questions/38599491/primeng-element-not-scoped-cant-be-styled-with-default-angular-2-viewencapsula
 :host /deep/ {
@@ -51,6 +48,14 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    td.number{
+      text-align: right;
+    }
+
+    th.number{
+      text-align: right;
     }
 
     th {

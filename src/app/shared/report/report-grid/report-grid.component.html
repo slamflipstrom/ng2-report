@@ -16,7 +16,10 @@
         <p-column *ngFor="let field of fields"
             [field]="field.field"
             [header]="field.header"
-            styleClass="column"
+            [styleClass]="field.type"
             sortable="true">
+                <template let-col let-record="rowData" pTemplate type="body">
+                    <span [class]="">{{record[field.field]}}</span>
+                </template>
         </p-column>
 </p-dataTable>
