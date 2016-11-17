@@ -110,7 +110,7 @@ export class PdfMakeService {
         for (let j = 0; j < keys.length; j++) {
           const currentProperty = keys[j];
           const currentValue = records[i][currentProperty];
-          if (typeof currentValue === 'number') {
+          if (fields[j].type === 'number') {
             let text = currentValue.toString();
             cellData.push({text: text, alignment: 'right'});
           } else {
