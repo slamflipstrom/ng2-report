@@ -3,13 +3,13 @@ import { IColumnDefs, IReportConfig, IAPISvcData, IReportAPIRequest } from '../i
 import { ReportDataService } from '../core/report/report-data.service';
 
 @Component({
-  selector: 'test-report',
-  templateUrl: './test-report.component.html',
-  styleUrls: ['./test-report.component.scss'],
+  selector: 'app-lazy-report',
+  templateUrl: './lazy-report.component.html',
+  styleUrls: ['./lazy-report.component.scss'],
   providers: [ReportDataService]
 })
 
-export class TestReportComponent implements OnInit {
+export class LazyReportComponent implements OnInit {
   columnDefs: IColumnDefs[];
   config: Object;
   apiSvcData: IAPISvcData[] = [];
@@ -36,8 +36,8 @@ export class TestReportComponent implements OnInit {
   getReportData(): void {
     this.columnDefs = this.getColumnDefs();
     this.config = this.getReportConfig();
-    this.summary = 'This is the Test-Report summary';
-    this.title = 'Test Report';
+    this.summary = 'This is the Lazy-Report summary';
+    this.title = 'Lazy Report';
   }
 
   requestServiceData(lazy, $event) {
@@ -51,7 +51,7 @@ export class TestReportComponent implements OnInit {
 
   private getReportConfig(): Object {
     return {
-      lazy: false
+      lazy: true
     }
   }
 
@@ -85,3 +85,4 @@ export class TestReportComponent implements OnInit {
   };
 
 }
+
