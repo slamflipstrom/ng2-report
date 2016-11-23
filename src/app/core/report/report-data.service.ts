@@ -1,8 +1,9 @@
+import { DataTableModule, LazyLoadEvent } from 'primeng/primeng';
 import { Injectable } from '@angular/core';
 import { RandomService } from '../../core/random/random.service';
 import { IReportConfig, IAPISvcData, IAPIDataResponse } from '../../index';
 import { DatePipe } from '@angular/common';
-import { FileSizePipe } from './../../core/file-size.pipe'
+import { FileSizePipe } from './../../core/file-size.pipe';
 
 @Injectable()
 export class ReportDataService {
@@ -24,7 +25,7 @@ export class ReportDataService {
     )
   }
 
-  getLazyData(event): Promise<IAPIDataResponse> {
+  getLazyData(event: LazyLoadEvent): Promise<IAPIDataResponse> {
     // There would be a call to the API to populate this.setAmountOfData
     let filteredData = this.transformData(this.lotsOfData);
     if (event !== undefined) {
@@ -44,8 +45,7 @@ export class ReportDataService {
 
   getRandomData(): any {
     const numRows = this.random.getRandomInt(100, 200);
-    const data = this.buildRandomData(numRows);
-    return data;
+    return this.buildRandomData(numRows);
   }
 
   getRandomData2(): any {
@@ -70,8 +70,8 @@ export class ReportDataService {
     let row = {
       date: this.random.getRandomTimestamp(),
       name: this.random.getRandomName(),
-      assetId: this.random.getRandomInt(1, 100000),
-      transferSize: this.random.getRandomInt(0, 1000000000)
+      assetId: this.random.getRandomInt(1, 1000000),
+      transferSize: this.random.getRandomInt(0, 10000000000000)
     };
     return row;
   };

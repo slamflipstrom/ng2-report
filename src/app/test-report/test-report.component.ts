@@ -31,6 +31,7 @@ export class TestReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.getReportData();
+    this.requestServiceData(this.config['lazy'], null);
   }
 
   getReportData(): void {
@@ -41,9 +42,7 @@ export class TestReportComponent implements OnInit {
   }
 
   requestServiceData(lazy, $event) {
-    console.log(3);
-    if ($event == null || $event == undefined) {return}
-    this.reportDataService.getLazyData($event).then((data) => {
+    this.reportDataService.getData($event).then((data) => {
       this.apiSvcData = data.apiData;
       this.recordCount = data.totalCount;
     });
