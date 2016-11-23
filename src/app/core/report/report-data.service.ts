@@ -1,3 +1,4 @@
+import { IReportAPIRequest } from './../../interfaces';
 import { DataTableModule, LazyLoadEvent } from 'primeng/primeng';
 import { Injectable } from '@angular/core';
 import { RandomService } from '../../core/random/random.service';
@@ -25,9 +26,14 @@ export class ReportDataService {
     )
   }
 
-  getLazyData(event: LazyLoadEvent): Promise<IAPIDataResponse> {
+  getLazyData(event: LazyLoadEvent, requestData: IReportAPIRequest): Promise<IAPIDataResponse> {
     // There would be a call to the API to populate this.setAmountOfData
     let filteredData = this.transformData(this.lotsOfData);
+
+    // let apiRequest = event.map((requestData) => {
+    //   requestData.pageSize = event['rows'];
+    // });
+
     if (event !== undefined) {
       return Promise.resolve(
             this.buildReportData(filteredData.slice(event.first, (event.first + event.rows)), this.setAmountOfData.length)

@@ -43,7 +43,7 @@ export class LazyReportComponent implements OnInit {
   requestServiceData(lazy, $event) {
     console.log(3);
     if ($event == null || $event == undefined) {return}
-    this.reportDataService.getLazyData($event).then((data) => {
+    this.reportDataService.getLazyData($event, this.requestData).then((data) => {
       this.apiSvcData = data.apiData;
       this.recordCount = data.totalCount;
     });
