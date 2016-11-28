@@ -14,13 +14,23 @@ export type SortOptionType = {
 export interface IReportConfig {
   title: string;
   summary: string;
-  dataResponse: IAPIDataResponse;
+  lazyLoaded: boolean;
   fields: IColumnDefs[];
+  dataResponse?: IAPIDataResponse;
 }
 
 export interface IAPIDataResponse {
   apiData: IAPISvcData[];
   totalCount: number;
+  currentPage?: number;
+  pageSize?: number;
+  searchTerm?: string;
+  sortOptions?: IAPISortOptions;
+}
+
+export interface IAPISortOptions {
+  isAscending: boolean;
+  sortOption: string;
 }
 
 export interface IAPISvcData {

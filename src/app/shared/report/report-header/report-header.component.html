@@ -1,8 +1,8 @@
 <div class="report-header">
   <div class="title-bar">
     <span class="title-left title-text">
-      <strong>{{ title }}</strong>
-      <div class="title-counter">{{ record_count }}</div>
+      <strong>{{ config.title }}</strong>
+      <div class="title-counter">{{ config.dataResponse.totalCount }}</div>
     </span>
     <span class="title-right text-muted">
       <div class="title-export">
@@ -14,6 +14,6 @@
   </div>
 
   <div class="title-summary">
-    <p>{{ summary }}</p>
+    <p>{{ config.summary }}</p>
   </div>
 </div>

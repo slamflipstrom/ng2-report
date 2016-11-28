@@ -5,16 +5,16 @@
 
 <p-dataTable
     [globalFilter]="gb"
-    [lazy]="config['lazy']"
+    [lazy]="config.lazyLoaded"
     (onLazyLoad)="loadData($event)"
     [paginator]="true"
-    [totalRecords]="recordCount"
+    [totalRecords]="config.dataResponse.totalCount"
     resizableColumns="true"
     [responsive]="true"
     [rows]="10"
-    [value]="records"
+    [value]="config.dataResponse.apiData"
     (onRowDblclick)="assetInfo($event)">
-        <p-column *ngFor="let field of fields"
+        <p-column *ngFor="let field of config.fields"
             [field]="field.field"
             [header]="field.header"
             [styleClass]="field.type"

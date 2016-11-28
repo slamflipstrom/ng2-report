@@ -5,7 +5,7 @@ import { ReportDataService } from '../core/report/report-data.service';
 @Component({
   selector: 'app-lazy-report',
   templateUrl: './lazy-report.component.html',
-  styleUrls: ['./lazy-report.component.scss'],
+  styles: [''],
   providers: [ReportDataService]
 })
 

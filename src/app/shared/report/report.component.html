@@ -1,16 +1,10 @@
 <report-header
-  [title] = "title"
-  [summary] = "summary"
-  [record_count] = "recordCount"
+  [config] = "config"
   (pdfClicked) = "requestGridExportPDF()"
   (csvClicked) = "requestGridExportCSV()">
 </report-header>
 <report-grid
-  [fields] = "fields"
-  [records] = "records"
-  [title] = "title"
   [config] = "config"
-  [recordCount] = "recordCount"
   (rowDblClicked) = "viewAsset($event)"
   (dataRequestedLazy) = "getDataLazy($event)">
 </report-grid>
