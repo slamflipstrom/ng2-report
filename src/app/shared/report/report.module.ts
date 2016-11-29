@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportComponent } from './report.component';
@@ -11,6 +12,7 @@ import { CsvExportService } from '../csv-export/csv-export.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     DataTableModule,
     PaginatorModule
   ],

@@ -1,3 +1,4 @@
+import { ICplLazyLoadEvent } from './../interfaces';
 import { Component, OnInit } from '@angular/core';
 import { IColumnDefs, IReportConfig, IAPISvcData, IReportAPIRequest } from '../index';
 import { ReportDataService } from '../core/report/report-data.service';
@@ -17,33 +18,13 @@ export class LazyReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.config = this.buildReportConfig();
-    this.apiRequest = this.buildApiRequest(null);
+    this.apiRequest = this.reportDataService.buildApiRequest(this.config, null);
   }
 
-  requestServiceData($event) {
-    this.reportDataService.getLazyData(this.buildApiRequest($event)).then((data) => {
-      Object.assign(this.config.dataResponse, data)
+  requestServiceData($event: ICplLazyLoadEvent) {
+    this.reportDataService.getLazyData(this.reportDataService.buildApiRequest(this.config, $event)).then((data) => {
+      this.config.dataResponse = data;
     });
-  }
-
-  buildApiRequest($event): IReportAPIRequest {
-    let apiRequest = {
-      currentPage: 1,
-      label: '',
-      pageSize: this.config.numRows,
-      searchTerm: '',
-      sortOptions: {
-        isAscending: true,
-        sortOption: ''
-      }
-    };
-    if ($event == null) {
-      return apiRequest;
-    }
-
-    apiRequest.currentPage = ($event.first + $event.rows) / $event.rows;
-
-    return apiRequest;
   }
 
   private buildReportConfig(): IReportConfig {

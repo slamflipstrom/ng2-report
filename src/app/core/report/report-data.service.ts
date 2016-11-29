@@ -1,4 +1,4 @@
-import { IReportAPIRequest } from './../../interfaces';
+import { IReportAPIRequest, ICplLazyLoadEvent } from './../../interfaces';
 import { DataTableModule, LazyLoadEvent } from 'primeng/primeng';
 import { Injectable } from '@angular/core';
 import { RandomService } from '../../core/random/random.service';
@@ -41,6 +41,27 @@ export class ReportDataService {
     return Promise.resolve(
             this.buildReportData(transformedData.slice(firstRow, (firstRow + numRowsToGet)), this.lotsOfData.length)
       );
+  }
+
+  buildApiRequest(config: IReportConfig, $event: ICplLazyLoadEvent): IReportAPIRequest {
+    let apiRequest = {
+      currentPage: 1,
+      label: '',
+      pageSize: config.numRows,
+      searchTerm: '',
+      sortOptions: {
+        isAscending: true,
+        sortOption: ''
+      }
+    };
+    if ($event == null) {
+      return apiRequest;
+    }
+
+    apiRequest.currentPage = ($event.first + $event.rows) / $event.rows;
+    apiRequest.searchTerm = $event.globalFilter;
+
+    return apiRequest;
   }
 
   // reportData.length != totalCount in the case of serverside paging

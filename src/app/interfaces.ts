@@ -1,3 +1,4 @@
+import { LazyLoadEvent } from 'primeng/primeng';
 export interface IReportAPIRequest {
   currentPage: number;
   label: string;
@@ -27,6 +28,10 @@ export interface IAPIDataResponse {
   pageSize?: number;
   searchTerm?: string;
   sortOptions?: IAPISortOptions;
+}
+
+export interface ICplLazyLoadEvent extends LazyLoadEvent {
+  globalFilter: string;
 }
 
 export interface IAPISortOptions {

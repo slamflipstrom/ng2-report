@@ -1,10 +1,11 @@
 <div class="search-filter">
     <label>Search:</label>
-    <input #gb class="form-control" type="text" pInputText size="50" placeholder="Type to filter...">
+    <input #gb [(ngModel)]="globalFilter" class="form-control" type="text" pInputText size="50" placeholder="Type to filter...">
 </div>
 
 <p-dataTable
     [globalFilter]="gb"
+    [filterDelay]="1000"
     [lazy]="config.lazyLoaded"
     (onLazyLoad)="loadData($event)"
     [paginator]="true"

@@ -1,5 +1,5 @@
-import { IReportConfig, IAPIDataResponse, IAPISvcData } from './../../../interfaces';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IReportConfig, IAPIDataResponse, IAPISvcData, ICplLazyLoadEvent } from './../../../interfaces';
+import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { PdfMakeService } from '../../pdf-make/pdf-make.service';
 import { CsvExportService } from '../../csv-export/csv-export.service';
 
@@ -10,10 +10,14 @@ import { CsvExportService } from '../../csv-export/csv-export.service';
   providers: []
 })
 
-export class ReportGridComponent {
+export class ReportGridComponent implements OnInit {
+
   @Input() config: IReportConfig;
   @Output() rowDblClicked: EventEmitter<any> = new EventEmitter<string>();
-  @Output() dataRequestedLazy: EventEmitter<any> = new EventEmitter<string>();
+  @Output() dataRequestedLazy: EventEmitter<ICplLazyLoadEvent> = new EventEmitter<ICplLazyLoadEvent>();
+
+
+  private globalFilter: string = '';
 
   constructor(
     private pdfMakeService: PdfMakeService,
@@ -25,7 +29,8 @@ export class ReportGridComponent {
   }
 
   loadData($event) {
-    console.log(1);
+    console.log($event);
+    $event.globalFilter = this.globalFilter;
     this.dataRequestedLazy.emit($event);
   }
 
@@ -35,6 +40,10 @@ export class ReportGridComponent {
 
   exportToCsv() {
     this.csvExportService.downloadCsv(this.getGridData(), this.config.fields, this.config.title);
+  }
+
+  ngOnInit() {
+
   }
 
   private getGridData(): IAPISvcData[] {
