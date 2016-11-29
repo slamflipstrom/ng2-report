@@ -19,50 +19,28 @@ export class ReportDataService {
               private datePipe: DatePipe,
               private fileSizePipe: FileSizePipe) { }
 
-  getData(event): Promise<IAPIDataResponse> {
+  getData(): Promise<IAPIDataResponse> {
     let filteredData = this.transformData(this.setAmountOfData);
     return Promise.resolve(
             this.buildReportData(filteredData, this.setAmountOfData.length)
     )
   }
 
-  getLazyData(event: LazyLoadEvent, requestData: IReportAPIRequest): Promise<IAPIDataResponse> {
+  getLazyData(requestData: IReportAPIRequest): Promise<IAPIDataResponse> {
     // There would be a call to the API to populate this.setAmountOfData
-    let filteredData = this.transformData(this.lotsOfData);
+    let transformedData = this.transformData(this.lotsOfData);
 
-    let apiRequest = {
-      currentPage: 1,
-      label: '',
-      pageSize: 25,
-      searchTerm: '',
-      sortOptions: {
-        isAscending: false,
-        sortOption: undefined
-      } 
-    }; 
+    //  The rest of this is here to mimic the server side api work
+    //  basically we are just manipulating the array to pretend that the server is returning
+    //  the correct amount of data
 
-    let currentPage = event.first;
-    apiRequest.currentPage = currentPage =- 1;
+    const firstRow = (requestData.currentPage - 1) * requestData.pageSize;
+    const numRowsToGet = requestData.pageSize;
+    const totalSetOfRows = this.lotsOfData.length;
 
-    apiRequest.pageSize = event.rows;
-    // event.filters is returned as an empty object
-    // I attempted this: http://forum.primefaces.org/viewtopic.php?f=35&t=48297&sid=7f95f84cd2924aea20562da9a13ba292, to no avail
-    // See Prime forum. More specifically,
-    // http://forum.primefaces.org/viewtopic.php?f=35&t=48284&sid=7f95f84cd2924aea20562da9a13ba292
-    // and http://forum.primefaces.org/viewtopic.php?f=35&t=48295&sid=7f95f84cd2924aea20562da9a13ba292 
-    // apiRequest.searchTerm = event.filters
-    if (event.sortOrder === 1){
-      apiRequest.sortOptions.isAscending = true
-    } else if (event.sortOrder === -1){
-      apiRequest.sortOptions.isAscending = false
-    };
-    apiRequest.sortOptions.sortOption = event.sortField;
-
-    if (event !== undefined) {
-      return Promise.resolve(
-            this.buildReportData(filteredData.slice(event.first, (event.first + event.rows)), this.setAmountOfData.length)
+    return Promise.resolve(
+            this.buildReportData(transformedData.slice(firstRow, (firstRow + numRowsToGet)), this.lotsOfData.length)
       );
-    }
   }
 
   // reportData.length != totalCount in the case of serverside paging

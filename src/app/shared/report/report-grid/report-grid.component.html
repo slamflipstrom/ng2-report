@@ -11,7 +11,7 @@
     [totalRecords]="config.dataResponse.totalCount"
     resizableColumns="true"
     [responsive]="true"
-    [rows]="10"
+    [rows]="config.numRows"
     [value]="config.dataResponse.apiData"
     (onRowDblclick)="assetInfo($event)">
         <p-column *ngFor="let field of config.fields"

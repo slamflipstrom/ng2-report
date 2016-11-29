@@ -10,79 +10,80 @@ import { ReportDataService } from '../core/report/report-data.service';
 })
 
 export class LazyReportComponent implements OnInit {
-  columnDefs: IColumnDefs[];
-  config: Object;
-  apiSvcData: IAPISvcData[] = [];
-  recordCount: number;
-  summary: string;
-  title: string;
-  requestData: IReportAPIRequest = {
-    currentPage: 1,
-    label: '',
-    pageSize: 25,
-    searchTerm: '',
-    sortOptions: {
-      isAscending: false,
-      sortOption: undefined
-    }
-  }
+  config: IReportConfig;
+  apiRequest: IReportAPIRequest;
 
   constructor(private reportDataService: ReportDataService) { }
 
   ngOnInit(): void {
-    this.getReportData();
+    this.config = this.buildReportConfig();
+    this.apiRequest = this.buildApiRequest(null);
   }
 
-  getReportData(): void {
-    this.columnDefs = this.getColumnDefs();
-    this.config = this.getReportConfig();
-    this.summary = 'This is the Lazy-Report summary';
-    this.title = 'Lazy Report';
-  }
-
-  requestServiceData(lazy, $event) {
-    console.log(3);
-    if ($event == null || $event == undefined) {return}
-    this.reportDataService.getLazyData($event, this.requestData).then((data) => {
-      this.apiSvcData = data.apiData;
-      this.recordCount = data.totalCount;
+  requestServiceData($event) {
+    this.reportDataService.getLazyData(this.buildApiRequest($event)).then((data) => {
+      Object.assign(this.config.dataResponse, data)
     });
   }
 
-  private getReportConfig(): Object {
-    return {
-      lazy: true
+  buildApiRequest($event): IReportAPIRequest {
+    let apiRequest = {
+      currentPage: 1,
+      label: '',
+      pageSize: this.config.numRows,
+      searchTerm: '',
+      sortOptions: {
+        isAscending: true,
+        sortOption: ''
+      }
+    };
+    if ($event == null) {
+      return apiRequest;
     }
+
+    apiRequest.currentPage = ($event.first + $event.rows) / $event.rows;
+
+    return apiRequest;
   }
 
-  private getColumnDefs(): IColumnDefs[] {
-    return [
-      {
-        field: 'date',
-        header: 'Date',
-        styleClass: 'dateColumn',
-        type: 'date',
+  private buildReportConfig(): IReportConfig {
+    return {
+      title: 'Server Side Report',
+      summary: 'This is the Test-Report summary that is server-side or lazy loaded.',
+      numRows: 10,
+      lazyLoaded: true,
+      dataResponse: {
+        apiData: [],
+        totalCount: 0
       },
-      {
-        field: 'name',
-        header: 'Name',
-        styleClass: '',
-        type: 'string'
-      },
-      {
-        field: 'assetId',
-        header: 'ID',
-        styleClass: 'right',
-        type: 'number'
-      },
-      {
-        field: 'transferSize',
-        header: 'Size',
-        styleClass: 'right',
-        type: 'number'
-      },
-    ]
-  };
+      fields: [
+        {
+          field: 'date',
+          header: 'Date',
+          styleClass: 'dateColumn',
+          type: 'date',
+        },
+        {
+          field: 'name',
+          header: 'Name',
+          styleClass: '',
+          type: 'string'
+        },
+        {
+          field: 'assetId',
+          header: 'ID',
+          styleClass: 'right',
+          type: 'number'
+        },
+        {
+          field: 'transferSize',
+          header: 'Size',
+          styleClass: 'right',
+          type: 'number'
+        },
+      ]
+    }
+  }
 
 }
 

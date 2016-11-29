@@ -17,11 +17,11 @@ export class TestReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.config = this.buildReportConfig();
-    this.requestServiceData(null);
+    this.requestServiceData();
   }
 
-  requestServiceData( $event) {
-    this.reportDataService.getData($event).then((data) => {
+  requestServiceData() {
+    this.reportDataService.getData().then((data) => {
       Object.assign(this.config.dataResponse, data)
     });
   }
@@ -30,6 +30,7 @@ export class TestReportComponent implements OnInit {
     return {
       title: 'Test Report',
       summary: 'This is the Test-Report summary',
+      numRows: 10,
       lazyLoaded: false,
       dataResponse: {
         apiData: [],

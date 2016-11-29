@@ -15,6 +15,7 @@ export interface IReportConfig {
   title: string;
   summary: string;
   lazyLoaded: boolean;
+  numRows: number;
   fields: IColumnDefs[];
   dataResponse?: IAPIDataResponse;
 }
