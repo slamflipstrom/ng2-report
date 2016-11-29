@@ -1,20 +1,21 @@
 <div class="search-filter">
     <label>Search:</label>
-    <input #gb class="form-control" type="text" pInputText size="50" placeholder="Type to filter...">
+    <input #gb [(ngModel)]="globalFilter" class="form-control" type="text" pInputText size="50" placeholder="Type to filter...">
 </div>
 
 <p-dataTable
     [globalFilter]="gb"
-    [lazy]="config['lazy']"
+    [filterDelay]="1000"
+    [lazy]="config.lazyLoaded"
     (onLazyLoad)="loadData($event)"
     [paginator]="true"
-    [totalRecords]="recordCount"
+    [totalRecords]="config.dataResponse.totalCount"
     resizableColumns="true"
     [responsive]="true"
-    [rows]="10"
-    [value]="records"
+    [rows]="config.numRows"
+    [value]="config.dataResponse.apiData"
     (onRowDblclick)="assetInfo($event)">
-        <p-column *ngFor="let field of fields"
+        <p-column *ngFor="let field of config.fields"
             [field]="field.field"
             [header]="field.header"
             [styleClass]="field.type"

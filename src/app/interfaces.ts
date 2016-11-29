@@ -1,3 +1,6 @@
+import { IAPIDataResponse } from './interfaces';
+import { LazyLoadEvent } from 'primeng/primeng';
+
 export interface IReportAPIRequest {
   currentPage: number;
   label: string;
@@ -14,13 +17,24 @@ export type SortOptionType = {
 export interface IReportConfig {
   title: string;
   summary: string;
-  dataResponse: IAPIDataResponse;
   fields: IColumnDefs[];
+  lazyLoaded: boolean;
+  numRows: number;
+  dataResponse?: IAPIDataResponse;
 }
 
 export interface IAPIDataResponse {
   apiData: IAPISvcData[];
   totalCount: number;
+}
+
+export interface ICplLazyLoadEvent extends LazyLoadEvent {
+  globalFilter: string;
+}
+
+export interface IAPISortOptions {
+  isAscending: boolean;
+  sortOption: string;
 }
 
 export interface IAPISvcData {

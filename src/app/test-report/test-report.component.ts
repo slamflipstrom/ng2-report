@@ -5,82 +5,68 @@ import { ReportDataService } from '../core/report/report-data.service';
 @Component({
   selector: 'test-report',
   templateUrl: './test-report.component.html',
-  styleUrls: ['./test-report.component.scss'],
+  styles: [],
   providers: [ReportDataService]
 })
 
 export class TestReportComponent implements OnInit {
-  columnDefs: IColumnDefs[];
-  config: Object;
-  apiSvcData: IAPISvcData[] = [];
-  recordCount: number;
-  summary: string;
-  title: string;
-  requestData: IReportAPIRequest = {
-    currentPage: 1,
-    label: '',
-    pageSize: 25,
-    searchTerm: '',
-    sortOptions: {
-      isAscending: false,
-      sortOption: undefined
-    }
-  }
+  config: IReportConfig;
 
   constructor(private reportDataService: ReportDataService) { }
 
   ngOnInit(): void {
     this.getReportData();
-    this.requestServiceData(this.config['lazy'], null);
+    this.requestServiceData();
   }
 
   getReportData(): void {
-    this.columnDefs = this.getColumnDefs();
-    this.config = this.getReportConfig();
-    this.summary = 'This is the Test-Report summary';
-    this.title = 'Test Report';
+    this.config = this.buildReportConfig();
+    this.requestServiceData();
   }
 
-  requestServiceData(lazy, $event) {
-    this.reportDataService.getData($event).then((data) => {
-      this.apiSvcData = data.apiData;
-      this.recordCount = data.totalCount;
+  requestServiceData() {
+    this.reportDataService.getData().then((data) => {
+      Object.assign(this.config.dataResponse, data)
     });
   }
 
-  private getReportConfig(): Object {
+  private buildReportConfig(): IReportConfig {
     return {
-      lazy: false
+      title: 'Test Report',
+      summary: 'This is the Test-Report summary',
+      numRows: 10,
+      lazyLoaded: false,
+      dataResponse: {
+        apiData: [],
+        totalCount: 0
+      },
+      fields: [
+        {
+          field: 'date',
+          header: 'Date',
+          styleClass: 'dateColumn',
+          type: 'date',
+        },
+        {
+          field: 'name',
+          header: 'Name',
+          styleClass: '',
+          type: 'string'
+        },
+        {
+          field: 'assetId',
+          header: 'ID',
+          styleClass: 'right',
+          type: 'number'
+        },
+        {
+          field: 'transferSize',
+          header: 'Size',
+          styleClass: 'right',
+          type: 'number'
+        },
+      ]
     }
   }
-
-  private getColumnDefs(): IColumnDefs[] {
-    return [
-      {
-        field: 'date',
-        header: 'Date',
-        styleClass: 'dateColumn',
-        type: 'date',
-      },
-      {
-        field: 'name',
-        header: 'Name',
-        styleClass: '',
-        type: 'string'
-      },
-      {
-        field: 'assetId',
-        header: 'ID',
-        styleClass: 'right',
-        type: 'number'
-      },
-      {
-        field: 'transferSize',
-        header: 'Size',
-        styleClass: 'right',
-        type: 'number'
-      },
-    ]
-  };
 
 }
