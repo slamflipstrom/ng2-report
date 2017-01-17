@@ -14,9 +14,9 @@ import { TestReportComponent } from './test-report/test-report.component';
 import { LazyReportComponent } from './lazy-report/lazy-report.component';
 
 const appRoutes: Routes = [
-  {path: '', component: TestReportComponent},
-  {path: 'test-report', component: TestReportComponent},
-  {path: 'lazy-report', component: LazyReportComponent},
+  { path: '', redirectTo: '/test-report', pathMatch: 'full' },
+  { path: 'test-report', component: TestReportComponent },
+  { path: 'lazy-report', component: LazyReportComponent },
 ]
 
 @NgModule({
